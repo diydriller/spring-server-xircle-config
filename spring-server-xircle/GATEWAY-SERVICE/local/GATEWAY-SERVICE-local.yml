@@ -1,0 +1,23 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-service
+          uri: lb://API-SERVICE
+          predicates:
+            - Path=/api/**
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/notification/**
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: reactive
+
+jwt:
+  secret: xircle
