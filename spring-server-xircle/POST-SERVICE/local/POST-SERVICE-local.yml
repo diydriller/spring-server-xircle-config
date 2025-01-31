@@ -1,9 +1,11 @@
+# eureka
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
 spring:
+  # mysql
   datasource:
     url: jdbc:mysql://localhost:3300/xircle
     username: root
@@ -17,6 +19,30 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
+  # kafka
+  kafka:
+    bootstrap-servers: localhost:29092 , localhost:29093, localhost:2094
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: post-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        enable.auto.commit: false
+        isolation.level: read_committed
+    listener:
+      ack-mode: manual
+
+# redis
+redis:
+  port: 6300
+  host: localhost
+  password: redis_source
+
+# resilience
 resilience4j.circuitbreaker:
   configs:
     default:
@@ -28,13 +54,9 @@ resilience4j.circuitbreaker:
       waitDurationInOpenState: 5s
       failureRateThreshold: 50
       eventConsumerBufferSize: 10
-
 resilience4j.retry:
   configs:
     default:
       maxAttempts: 3
       waitDuration: 100
-redis:
-  port: 6300
-  host: localhost
-  password: redis_source
+
