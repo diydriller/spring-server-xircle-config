@@ -11,4 +11,4 @@ spring:
       password: neo4j_source
 
 kafka:
-  broker: localhost:29092 , localhost:29093, localhost:2094
+  broker: localhost:29092 , localhost:29093, localhost:29094
