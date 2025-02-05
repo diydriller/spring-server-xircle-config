@@ -7,10 +7,16 @@ eureka:
 spring:
   # mysql
   datasource:
-    url: jdbc:mysql://localhost:3300/xircle
-    username: root
-    password: mysql_source
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    primary:
+      url: jdbc:mysql://localhost:3300/xircle
+      username: root
+      password: mysql_source
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    shared:
+      url: jdbc:mysql://localhost:3307/xircle
+      username: root
+      password:
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,15 +24,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-  
-  # kafka
-  kafka:
-    bootstrap-servers: localhost:29092  
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      transaction-id-prefix: "tx-"
-      enable-idempotence: true  
 
 # redis
 redis:
