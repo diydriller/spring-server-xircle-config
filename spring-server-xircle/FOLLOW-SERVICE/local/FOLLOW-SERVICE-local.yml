@@ -11,10 +11,10 @@ spring:
     authentication:
       username: neo4j
       password: neo4j_source
-  
+
   # kafka
   kafka:
-    bootstrap-servers: localhost:29092 
+    bootstrap-servers: localhost:29092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -23,11 +23,12 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: "*"  
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: "com.xircle.common.event.UserCreationEventDto"
       enable-auto-commit: false
       isolation-level: read_committed
     listener:
-      ack-mode: manual  
+      ack-mode: manual
 
 kafka:
   broker: localhost:29092
