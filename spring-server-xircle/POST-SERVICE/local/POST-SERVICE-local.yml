@@ -32,7 +32,6 @@ kafka:
     properties:
       spring.json.trusted.packages: "*"
       enable.auto.commit: false
-      isolation.level: read_committed
   listener:
     ack-mode: manual
 
@@ -59,4 +58,3 @@ resilience4j.retry:
     default:
       maxAttempts: 3
       waitDuration: 100
-
